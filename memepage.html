@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Alert</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: red;
+      font-family: monospace;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      margin-top: 20vh;
+      font-size: 3em;
+      animation: flicker 1s infinite;
+    }
+    #alert-box {
+      background: #111;
+      border: 3px solid red;
+      display: inline-block;
+      padding: 20px;
+      margin-top: 30px;
+      animation: pulse 1.5s infinite;
+    }
+    button {
+      background: red;
+      color: black;
+      font-weight: bold;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border: none;
+      cursor: pointer;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    #scare {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://i.imgur.com/qXCPX61.png') no-repeat center center;
+      background-size: cover;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚠️ SYSTEM ALERT ⚠️</h1>
+  <div id="alert-box">
+    <p><strong>VIRUS DETECTED!</strong></p>
+    <p>Immediate action required.</p>
+    <button onclick="triggerChaos()">Fix Now</button>
+  </div>
+  <div id="scare"></div>
+
+  <audio id="creepySound" src="https://www.soundjay.com/button/beep-10.mp3"></audio>
+
+  <script>
+    function triggerChaos() {
+      document.getElementById('creepySound').play();
+      document.body.style.background = 'darkred';
+      document.body.innerHTML = '<h1 style="font-size: 4em;">SYSTEM FAILURE</h1>';
+      setTimeout(() => {
+        document.getElementById('scare').style.display = 'block';
+        setTimeout(() => {
+          alert("You've been pranked 😈 You're fine.");
+          location.reload();
+        }, 4000);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
